@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "AI Artist Checker for YouTube Music",
+  "version": "0.1.0",
+  "description": "Flags YouTube Music artists that may be AI-generated, from Zoundhub's list, and lets you mark them as AI or not AI yourself.",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{317df187-ac42-4d2e-87ad-36a2bcc1f78e}",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://music.youtube.com/*", "https://zoundhub.com/*"],
+  "background": {
+    "scripts": ["common.js", "background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["common.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
